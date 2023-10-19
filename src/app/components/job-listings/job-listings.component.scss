@@ -1,0 +1,183 @@
+@use '../../../scss/variables/colors';
+
+.job_listings_list {
+    margin: 2.625rem 0 9.375rem;
+    width: 69.375rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    &_item {
+        padding: 2.125rem 2.5rem;
+        background: colors.$clr-white;
+        border-radius: .3125rem;
+        display: flex;
+        align-items: center;
+        gap: 1.375rem;
+        position: relative;
+        overflow: hidden;
+        &.featured::before {
+            content: '';
+            width: .375rem;
+            height: 100%;
+            background: colors.$clr-4;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.job_details {
+    > div:nth-child(1) {
+        display: flex;
+        align-items: center;
+        gap: .375rem;
+    }
+    .job_company {
+        margin: 0 .625rem 0 0;
+        color: colors.$clr-4;
+        font-size: 1.125rem;
+        font-weight: 700;
+    }
+    .new_tag,
+    .featured_tag {
+        width: max-content;
+        padding: .4375rem .625rem .3125rem;
+        color: colors.$clr-1;
+        font-size: .8125rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 1.875rem;
+    }
+    .new_tag {
+        background: colors.$clr-4;
+    }
+    .featured_tag {
+        background: colors.$clr-3;
+    }
+    .job_position {
+        margin: .75rem 0;
+        font-size: 1.375rem;
+        font-weight: 700;
+    }
+    &_more {
+        color: colors.$clr-2;
+        font-size: 1.125rem;
+        font-weight: 500;
+        display: flex;
+        gap: 2.5rem;
+        div {
+            position: relative;
+            &::after {
+                content: '';
+                width: .25rem;
+                aspect-ratio: 1;
+                background: colors.$clr-2;
+                border-radius: 50%;
+                position: absolute;
+                right: -1.25rem;
+                top: .375rem;
+            }
+            &:last-child::after {
+                display: none;
+            }
+        }
+    }
+}
+
+.job_filters {
+    margin-left: auto;
+    display: flex;
+    gap: 1.0625rem;
+    button {
+        padding: .625rem .5rem;
+        background: colors.$clr-1;
+        color: colors.$clr-4;
+        font-size: 1rem;
+        border-radius: .3125rem;
+        font-weight: 700;
+        transition: background .3s, color .3s;
+        &:hover {
+            background: colors.$clr-4;
+            color: colors.$clr-1;
+        }
+    }
+}
+
+@media(max-width: 70.9375rem) {
+    .job_listings_list {
+        width: 26.25rem;
+    }
+
+    .job_listings_list {
+        gap: 3.75rem;
+        &_item {
+            width: 100%;
+            position: relative;
+            overflow: visible;
+        }
+        img {
+            width: 3.75rem;
+            aspect-ratio: 1;
+            position: absolute;
+            top: -1.625rem;
+            left: 2.1875rem;
+        }
+    }
+
+    .job_listings_list_item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .job_details {
+        margin-top: 1.25rem;
+    }
+
+    .job_filters {
+        margin: 0;
+        padding-top: 1.125rem;
+        border-top: .125rem solid colors.$clr-1;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 26.5625rem) {
+    .job_listings_list {
+        width: 20.625rem;
+    }
+
+    .job_listings_list {
+        margin-top: 3.75rem;
+        img {
+            width: 3rem;
+            top: -1.625rem;
+            left: 1.75rem;
+        }
+        &_item {
+            padding: 2rem 1.5625rem 1.25rem;
+        }
+    }
+
+    .job_details {
+        margin: 0;
+        gap: 2.8125rem;
+        .job_company {
+            font-size: 1rem;
+        }
+        .job_position {
+            margin: .75rem 0 1.125rem;
+            font-size: 1rem;
+        }
+        &_more {
+            font-size: .9375rem;
+            gap: 1.5rem;
+        }
+    }
+
+    .job_filters {
+        button {
+            padding: .5rem;
+        }
+    }
+}

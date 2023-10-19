@@ -1,0 +1,24 @@
+<ul class="job_listings_list">
+    <li class="job_listings_list_item" [class.featured]="job.featured" *ngFor="let job of jobListings$ | async">
+      <img [src]="job.logo" [alt]="job.company">
+      <div class="job_details">
+        <div>
+          <p class="job_company">{{ job.company }}</p>
+          <div class="new_tag" *ngIf="job.new">New!</div>
+          <div class="featured_tag" *ngIf="job.featured">Featured</div>
+        </div>
+        <p class="job_position">{{ job.position }}</p>
+        <div class="job_details_more">
+          <div>{{ job.postedAt }}</div>
+          <div>{{ job.contract }}</div>
+          <div>{{ job.location }}</div>
+        </div>
+      </div>
+      <div class="job_filters">
+        <button (click)="this.onSelectFilter.emit(job.role)">{{ job.role }}</button>
+        <button (click)="this.onSelectFilter.emit(job.level)">{{ job.level }}</button>
+        <button (click)="this.onSelectFilter.emit(language)" *ngFor="let language of job.languages">{{ language }}</button>
+        <button (click)="this.onSelectFilter.emit(tool)" *ngFor="let tool of job.tools">{{ tool }}</button>
+      </div>
+    </li>
+</ul>

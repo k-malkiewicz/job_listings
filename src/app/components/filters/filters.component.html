@@ -1,0 +1,11 @@
+<div class="active_filters" [class.hidden]="filters.length === 0">
+    <ul class="active_filters_list">
+      <li class="active_filters_list_item" *ngFor="let filter of filters">
+        {{ filter }}
+        <button class="remove_filter_btn" (click)="onRemoveFilter.emit(filter)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path fill="#FFF" fill-rule="evenodd" d="M11.314 0l2.121 2.121-4.596 4.596 4.596 4.597-2.121 2.121-4.597-4.596-4.596 4.596L0 11.314l4.596-4.597L0 2.121 2.121 0l4.596 4.596L11.314 0z"/></svg>
+        </button>
+      </li>
+    </ul>
+    <button class="clear_filters_btn" (click)="onClearAllFilters.emit()">Clear</button>
+</div>

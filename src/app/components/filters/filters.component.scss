@@ -1,0 +1,72 @@
+@use '../../../scss/variables/colors';
+
+.active_filters {
+    width: 69.375rem;
+    min-height: 4.5rem;
+    padding: 1.25rem 2.8125rem;
+    margin-top: 7.5rem;
+    background: colors.$clr-white;
+    border-radius: .3125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3.125rem;
+    visibility: visible;
+    &.hidden {
+        visibility: hidden;
+    }
+    &_list {
+        display: flex;
+        gap: .9375rem;
+        flex-wrap: wrap;
+        &_item {
+            padding-left: .5rem;
+            background: colors.$clr-1;
+            color: colors.$clr-4;
+            font-size: 1rem;
+            border-radius: .3125rem;
+            font-weight: 700;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            .remove_filter_btn {
+                margin-left: .5rem;
+                width: 2rem;
+                aspect-ratio: 1;
+                background: colors.$clr-4;
+                display: grid;
+                place-content: center;
+                transition: background .3s;
+                &:hover {
+                    background: colors.$clr-3;
+                }
+            }
+        }
+    }
+    .clear_filters_btn {
+        background: transparent;
+        color: colors.$clr-4;
+        font-size: 1rem;
+        font-weight: 700;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media(max-width: 70.9375rem) {
+    .active_filters {
+        width: 26.25rem;
+    }
+}
+
+@media(max-width: 26.5625rem) {
+    .active_filters {
+        width: 20.625rem;
+    }
+
+    .active_filters {
+        padding: 1.375rem;
+        gap: 1.25rem;
+    }
+}
