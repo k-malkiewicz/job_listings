@@ -19,7 +19,7 @@ Mobile view (450px wide)
 
 ## Links
 
-- Live Site URL ⇒ 
+- Live Site URL ⇒ https://job-listings-km9.netlify.app
 
 ## Overview
 
