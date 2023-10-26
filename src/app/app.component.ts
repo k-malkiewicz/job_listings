@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { JobListingsService } from './services/job-listings.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { Job } from './interfaces/job.interface';
 import { JobListingsComponent } from './components/job-listings/job-listings.component';
 import { FiltersComponent } from './components/filters/filters.component';
@@ -16,7 +15,7 @@ import { FiltersComponent } from './components/filters/filters.component';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  jobListings$!: Observable<Job[]>;
+  jobListings$: BehaviorSubject<Job[]> = new BehaviorSubject<Job[]>([]);
   filters: string[] = [];
 
   constructor(private jobListingsService: JobListingsService){}
@@ -26,7 +25,9 @@ export class AppComponent implements OnInit {
   }
 
   fetchJobListings(): void {
-    this.jobListings$ = this.jobListingsService.get();
+    this.jobListingsService.get().subscribe(res => {
+      this.jobListings$.next(res);
+    });
   }
 
   selectFilter(filter: string): void {
@@ -50,15 +51,14 @@ export class AppComponent implements OnInit {
     if (this.filters.length === 0) {
       return true;
     }
-  
     const jobFilters = [job.role, job.level, ...job.languages, ...job.tools];
-
     return this.filters.every(filter => jobFilters.includes(filter));
   }
 
   updateJobListings(): void {
-    this.jobListings$ = this.jobListings$.pipe(
-      map(job => job.filter(job => this.matchesFilters(job)))
-    )
+    this.jobListingsService.get().subscribe((jobs: Job[]) => {
+      const filteredJobs = jobs.filter(job => this.matchesFilters(job));
+      this.jobListings$.next(filteredJobs);
+    });
   }
 }
